@@ -27,24 +27,32 @@ const gallery = [
 ]
 
 
-//const container = document.querySelector('.gallery');
-const thumbnails = document.querySelectorAll(".thumbnail-img");
-const mainImage = document.getElementById("mainImg");
 
+/* Gallery */
+const thumbnails = document.querySelectorAll(".thumbnail-img");
+const mainImage = document.getElementById("main_img");
+const modalMainImage = document.getElementById("modal-main_img");
+
+const leftBtn = document.querySelector(".left-btn");
+const rightBtn = document.querySelector(".right-btn");
+
+
+/* Cart */
 const input = document.getElementById("enter");
 const btns = document.querySelectorAll(".btn");
 let count = 0;
 
 const cartCounter = document.querySelector(".cart-num");
-
-
 const quanity = document.querySelector(".quantity");
 
+
+/* Modal */
+const overlay = document.querySelector(".modal-overlay"); 
+const close_btn = document.querySelector(".close-btn");
 
 
 
 /* --------------- NAV TOGGLE---------------*/
-
 
 const navToggle = document.querySelector(".nav-toggle");
 const links = document.querySelector(".links");
@@ -52,6 +60,12 @@ const links = document.querySelector(".links");
 navToggle.addEventListener("click", function () {
     links.classList.toggle("show-links");
 });
+/* --------------- NAV TOGGLE end---------------*/
+
+
+
+
+
 
 
 
@@ -102,44 +116,16 @@ btns.forEach( function (btn){
 
 
 
-/*
-//load items
-window.addEventListener('DOMContentLoaded', function(){
-    displayMenuItems(gallery);
-
-  });
-
-
-function displayMenuItems(menuItems){
-    let displayMenu = menuItems.map(function(item){
-        return `
-        <ul>
-            <li><img id="${item.id}" class="thumbnail-img" src="${item.imgThumbnail}" alt=""></li>
-        </ul>
-        
-        `
-    }).join("");
-    container.innerHTML = displayMenu;
-}
-*/
 
 
 
-
-/*
-Armar un ForEach + querySelectorAll que recorra cada una de las imagenes thumbnail, y si 
-se clickea una:
-1. Se togglee la clase SOLO de esa imagen, para agregarle bordes y trasparencia
-2. Cambiar la imagen principal
-*/
 
 
 
 /* --------------- images GALLERY ---------------*/
 
-
-thumbnails.forEach(function(indiv){
-    indiv.addEventListener('click',function(e){
+thumbnails.forEach(function(indiv, index){
+    indiv.addEventListener('click',function(){
 
         thumbnails.forEach(function(item){
             if (item !== indiv) {
@@ -148,15 +134,20 @@ thumbnails.forEach(function(indiv){
         });
         indiv.classList.toggle("selected");
         
+
+        mainImage.src = gallery[index].img
+        modalMainImage.src = gallery[index].img
+
         
-        gallery.map((item)=>{ // sets image with same ID as clicked
-            if(item.id === e.currentTarget.id){
-                mainImage.src = item.img
-            }
-        })
-        
+        // gallery.map((item)=>{ // sets image with same ID as clicked
+        //     if(item.id === e.currentTarget.id){
+        //         mainImage.src = item.img
+        //     }
+        // })
     });
+
 });
+/* --------------- images GALLERY end ---------------*/
 
 
 
@@ -164,10 +155,13 @@ thumbnails.forEach(function(indiv){
 
 
 
-const overlay = document.querySelector(".modal-overlay"); 
-const close_btn = document.querySelector(".close-btn");
 
 
+
+
+
+
+/* --------------- images MODAL---------------*/
 
 mainImage.addEventListener('click',function(){
     //console.log(overlay.classList);
@@ -184,5 +178,5 @@ close_btn.addEventListener('click',function(){
     overlay.classList.remove("open-modal");
 });
 
-/* --------------- images GALLERY ---------------*/
+
 

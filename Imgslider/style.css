@@ -170,13 +170,51 @@ body{
 
 
 .information{
-  position: relative;
+  width: 320px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  /* position: relative;
   margin-top: 15%;
   margin-left: 100px;
   height: 200px;
   width: 300px;
   animation-name: example;
-  animation-duration: 4s;
+  animation-duration: 4s; */
+}
+.information span{
+  display: block;
+}
+.title{
+  font-size: 2rem;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+  position: relative;
+  animation: title 1.5s 1;
+
+}
+.text-info{
+  
+    animation: text 1.5s 1;
+
+}
+
+ @keyframes title{
+  0%{
+    opacity: 0;
+    margin-bottom: -40px;
+  }
+
+}
+ @keyframes text{
+  0%{
+    opacity: 0;
+  }
+  20%{
+    opacity: 0;
+  }
 }
 
 /* .title{
@@ -191,10 +229,17 @@ body{
   position: relative;
 } */
 
+.information button{
+  height: 35px;
+  width: 130px;
+  border-radius: 15px;
+  color: #fff;
+  margin-top: 20px;
+}
 
 /*
 NEW animations
-*/
+
 @keyframes outer-left {
   from {
     transform: translateX(50%);
@@ -219,7 +264,6 @@ NEW animations
 }
 
 
-/*</>*/
 
 
 
@@ -239,15 +283,8 @@ NEW animations
 }
 
 
+*/
 
-
-.information button{
-  height: 35px;
-  width: 130px;
-  border-radius: 15px;
-  color: #fff;
-  margin-top: 20px;
-}
 
 
 /* ------------------------------------- 3. IMAGES ---------------------------------- */

@@ -41,6 +41,9 @@ const Allscreens = [
 
 const containers = document.querySelector(".screens");
 
+const topBtn = document.querySelector(".up-arrow");
+const downBtn = document.querySelector(".down-arrow");
+const aPage = document.querySelector(".main-screen");
 
 
 
@@ -51,6 +54,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
 
 
+  /* dynamic display */
 function displayMenuItems(menuItems){
     let displayMenu = menuItems.map(function(item){
         return `
@@ -81,39 +85,35 @@ function displayMenuItems(menuItems){
 
 
 
-const topBtn = document.querySelector(".up-arrow");
-const downBtn = document.querySelector(".down-arrow");
-const aPage = document.querySelector(".main-screen");
+    // Detects when the up arrow should appear
+    const pageHeight = aPage.scrollHeight;
+    console.log(pageHeight);
 
-const pageHeight = aPage.scrollHeight;
-console.log(pageHeight);
+    window.onscroll = function() {scrollFunction()};
 
-window.onscroll = function() {scrollFunction()};
+    function scrollFunction() {
+    if (document.body.scrollTop > pageHeight-10 || document.documentElement.scrollTop > pageHeight-10) {
+        topBtn.style.display = "block";
+    } else {
+        topBtn.style.display = "none";
+    }
+    }
 
-function scrollFunction() {
-  if (document.body.scrollTop > pageHeight-10 || document.documentElement.scrollTop > pageHeight-10) {
-    topBtn.style.display = "block";
-  } else {
-    topBtn.style.display = "none";
-  }
-}
+        
 
-// When the user clicks on the button, scroll to the top of the document
+    // When the user clicks on the button, scroll to the top of the document
+    let num = 0;
 
-let num = 0;
-
-function topFunction() {
-    
-    if(num>=1){num = num-1};
-    document.querySelector(`.page${num}`).scrollIntoView({ 
-        behavior: 'smooth' 
-    });
- }
+    function topFunction() {
+        if(num>=1){num = num-1};
+        document.querySelector(`.page${num}`).scrollIntoView({ 
+            behavior: 'smooth' 
+        });
+    }
 
 
  
 function downFunction() {
-
     if(num<4){num = num+1};
     document.querySelector(`.page${num}`).scrollIntoView({ 
         behavior: 'smooth' 

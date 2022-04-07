@@ -38,6 +38,7 @@ body {
     font-size: 16px;
     background: #fff;
     margin-bottom: 100px;
+    position: relative;
 }
 
 
@@ -64,7 +65,6 @@ h4 {
   font-size: 0.875rem;
 }
 p {
-  margin-bottom: 1.25rem;
 }
 
 /* ------------------------------------- 2. NAV BAR ---------------------------------- */
@@ -134,6 +134,7 @@ p {
   position: relative;
   visibility: hidden;
   left: 30px;
+  bottom: 8px;
   color: #fff;
   font-size: 0.7rem;
   background-color: var(--orange);
@@ -209,6 +210,8 @@ p {
   max-width: 78vw;
   color: var(--Dark-grayish-blue);
   letter-spacing: 1px;
+  margin-bottom: 1.25rem;
+
 }
 
 /* cart */
@@ -359,22 +362,48 @@ input{
   justify-content: center;
 }
 
+.main-img{
+  position: relative;
+  display: flex;
+}
+.modal_btn-container{
+  width: 100%;
+  position: absolute;
+  align-self: center;
+}
+.modal_btn-container i{
+  font-size: 4rem;
+  padding: 0 20px;
+}
+.right-btn{
+  position: absolute;
+  right: 0;
+  color: var(--Very-vark-blue);
+}
+.left-btn{
+  position: absolute;
+  left: 0;
+  color: var(--Very-vark-blue);
+}
+
+
+
 .modal-container .main-img img{
   border-radius: 1rem;
 }
 
 
+
 .close-btn {
   position: absolute;
-  top: -50px;
-  right: 0;
+  top: 10px;
+  right: 10px;
   font-size: 2rem;
   background: transparent;
   border-color: transparent;
   color: var(--Very-vark-blue);
   cursor: pointer;
 }
-.close-btn:hover {
-  color: var(--clr-red-light);
+.close-btn:hover, .modal_btn-container button:hover {
   transform: scale(1.3);
 }

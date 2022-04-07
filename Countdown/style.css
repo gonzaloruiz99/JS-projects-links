@@ -19,7 +19,30 @@
     --transition: all 0.3s linear;
     --spacing: 0.1rem;
     --radius: 0.25rem;
+
+    --hills-image: url("./images/pattern-hills.svg") ;
+    --stars-image: url("./images/bg-stars.svg");
 }
+
+
+.dark-theme {
+  --dark-desaturated-blue: hsl(236, 21%, 26%);
+  --soft-red: hsl(345, 95%, 68%);
+  --very-dark-blue: hsl(234, 17%, 12%);
+  --hills-image: url("./images/pattern-hills.svg");
+  --stars-image: url("./images/bg-stars.svg");
+
+}
+.light-theme {
+  --dark-desaturated-blue: hsl(192, 51%, 56%);
+  --very-dark-blue: hsl(197, 49%, 74%);
+  --soft-red: hsl(0, 0%, 98%);
+  --shadow-dark-blue:hsl(197, 27%, 47%);
+  --hills-image: url("./images/pattern-hills-day.svg");
+  --stars-image: url("");
+
+}
+
 
 
 
@@ -68,7 +91,7 @@ body{
     background-color: var(--very-dark-blue) ;
     color: #fff;
 
-    background-image: url("./images/bg-stars.svg");
+    background-image: var(--stars-image);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -77,7 +100,7 @@ body{
 
 
 main{
-  background: url("./images/pattern-hills.svg") no-repeat center bottom;
+  background: var(--hills-image) no-repeat center bottom;
   background-size: 100%;
 
   height: 100vh ;
@@ -107,19 +130,27 @@ main{
 }
 
 .countdown{
-  margin: 70px 200px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  /* grid-template-columns: repeat(4,1fr);
-  grid-column-gap: 10px; */
+  margin: 40px 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+
+}
+
+@media screen and (min-width: 600px) {
+  .countdown{
+     margin: 70px 200px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 }
 
 
 
 .box{
   height: 65px;
-  width: min(140px,24vw);
+  width: 140px;
   border-radius: 10px;
   background-color: var(--dark-desaturated-blue);
 }

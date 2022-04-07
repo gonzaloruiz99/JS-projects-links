@@ -19,7 +19,7 @@
 
 
 .bottom-info button{
-    width: 250px;
+    width: min(250px,50vw);
     border-radius: 20px;
 }
 

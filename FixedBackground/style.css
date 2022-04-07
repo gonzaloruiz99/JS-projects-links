@@ -68,7 +68,6 @@ p {
   font-size: 1rem;
   font-family: var(--ff-secondary);
   line-height: 2;
-  
 }
 
 /* ------------------------------------- 2. BODY ---------------------------------- */
@@ -81,12 +80,11 @@ p {
 .main-screen{
   background-color: var(--apple-green);
   width: 100%;
+  min-height: 600px;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-
-
 }
 
 .main-screen h1{
@@ -120,29 +118,40 @@ p {
   color: var(--font-color);
 }
 
+@media screen and (max-width: 600px){
+
+  .text {
+    padding: 20vh 0 10vh 10vw;
+    width: 70vw;
+  }
+  .main-screen h1{
+    font-size: 1.3rem;
+    width: 70vw;
+  }
+
+}
 
 .page1{
-  background: url("./img/img-1.jpg");
-  background-position:  center;
-  background-size: cover;
-  background-attachment: fixed;
-  
+  background-image: url("./img/img-1.jpg");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
 }
 .page2{
-  background: url("./img/img-2.jpg");
+  background-image: url("./img/img-2.jpg");
   background-position:  center;
   background-size: cover;
   background-attachment: fixed;
   color: var(--font-color2);
 }
 .page3{
-  background: url("./img/img-3.jpg");
+  background-image: url("./img/img-3.jpg");
   background-position:  center;
   background-size: cover;
   background-attachment: fixed;
 }
 .page4{
-  background: url("./img/img-4.jpg");
+  background-image: url("./img/img-4.jpg");
   background-position:  center;
   background-size: cover;
   background-attachment: fixed;

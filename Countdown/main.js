@@ -17,6 +17,7 @@ const items = document.querySelectorAll('.box h3');
 
 const closeBtn = document.querySelector(".close-btn");
 const modalBtn = document.querySelector(".modal-btn");
+const trashBtn = document.querySelector(".trash-btn");
 const modal = document.querySelector(".modal-overlay");
 const messagge = document.querySelector(".title h1");
 
@@ -25,6 +26,10 @@ modalBtn.addEventListener("click", function(){
 });
 closeBtn.addEventListener("click", function(){
     modal.classList.remove("open-modal");
+})
+trashBtn.addEventListener("click", function(){
+    localStorage.removeItem('list');
+    localStorage.clear();
 })
 
 
@@ -54,26 +59,65 @@ countdown logic:
 
 
 
+window.onload = function() {
+  if(localStorage.getItem('list') !== null){
+    getRemaindingTime((localStorage.getItem('list')))
+  }
+};
+
+
+
+
+
+
 
 function getuserDate(){ //Toma la data recibida por el "datetime-local" y lo transforma en valor utilizable.
+    
+
+  // if(localStorage.getItem('list') <= 0 || document.querySelector(".get-date").value <= 0){
+  //   alert("countdown done!")
+  //   return;
+  // }
+
+  
     const userDate = document.querySelector(".get-date").value;
 
-    const year = userDate.slice(0, 4);
-     const month = userDate.slice(5, 7) ;
-     const day =  userDate.slice(8, 10);
-     const hour = userDate.slice(11, 13);
-     const minute = userDate.slice(14, 16);
+    if(userDate <= 0){
+      alert("date must be higher than today!")
+      return ;
+    }
+    else{
+      const year = userDate.slice(0, 4);
+      const month = userDate.slice(5, 7) ;
+      const day =  userDate.slice(8, 10);
+      const hour = userDate.slice(11, 13);
+      const minute = userDate.slice(14, 16);
 
 
-    const futureDate = new Date(year, month, day, hour, minute); // valor utilizable
-    const futureTime = futureDate.getTime();
-    getRemaindingTime(futureTime);
-    
+      const futureDate = new Date(year, month, day, hour, minute); // valor utilizable
+      const futureTime = futureDate.getTime();
+
+      
+      localStorage.setItem("list", JSON.stringify(futureTime));
+      return getRemaindingTime(futureTime);
+    }
+}
+
+function reload(){
+  if(localStorage.getItem('list') !== null){
+    return getRemaindingTime(localStorage.getItem('list'));
+  }else{
+    items.forEach(function(item,index){
+        item.innerHTML = "00";
+    })
+    console.log("done");
+  }
 }
 
 
-
  function getRemaindingTime(futureT) { //Toma un tiempo futuro por parametro, y lo resta con el tiempo actual.
+
+
     const futureTime = futureT;
     const today = new Date().getTime();
     const t = futureTime - today;
@@ -89,7 +133,7 @@ function getuserDate(){ //Toma la data recibida por el "datetime-local" y lo tra
     
     //get final values
     let days = t / oneDay;
-    days = Math.floor(days) -30;
+    days = Math.floor(days) -31;
     let hours = Math.floor((t % oneDay) /oneHour);
     let minutes = Math.floor((t % oneHour) / oneMinute);
     let seconds = Math.floor((t % oneMinute) / 1000);
@@ -103,6 +147,7 @@ function getuserDate(){ //Toma la data recibida por el "datetime-local" y lo tra
         if(item < 10){
             return (item = `0${item}`);
         }
+        
         return item;
     }
 
@@ -110,12 +155,14 @@ function getuserDate(){ //Toma la data recibida por el "datetime-local" y lo tra
         item.innerHTML = format(values[index]);
     })
 
-    if (t < 0) {
-        clearInterval(countdown);
-        messagge.innerHTML = `<h4 class="expired">sorry, this giveaway has expired!</h4>`;
+    if (t <= 0) {
+        messagge.innerHTML = `<h1 class="expired">sorry, this giveaway has expired!</h1>`;
+        localStorage.clear();
+    }else{
+     setTimeout(reload,1000);
+
     }
 
-    let countdown = setInterval(getuserDate,1000);
   }
   
 

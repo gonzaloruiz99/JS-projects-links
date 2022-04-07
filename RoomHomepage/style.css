@@ -176,6 +176,9 @@ p {
 }
 
 
+.image-info h3{
+  padding-top: 15px;
+}
 .image-info h3:hover{
   opacity: 50%;
   transition: var(--transition);
@@ -192,7 +195,7 @@ margin-left: auto;
   height: 60px;
   width: 60px;
 }
-.arrows button:hover{
+.arrows button:hover, .arrows button:active{
   background: var(--Dark-Gray);
   transition: var(--transition);
 }
@@ -216,3 +219,4 @@ margin-left: auto;
 		object-fit: cover;
 		display: block;
 }
+
